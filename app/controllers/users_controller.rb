@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update]
+	before_action :require_user, except: [:show, :index]
 
 	def index
 		@users = User.paginate(page: params[:page], per_page: 3)
@@ -43,5 +44,11 @@ class UsersController < ApplicationController
 
 	def set_user
 		@user = User.find(params[:id])
+	end
+	def require_user
+		if current_user != @user
+			flash[:alert] = "you can only edit your own profile"
+			redirect_to @user
+		end
 	end
 end
