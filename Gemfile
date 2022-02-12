@@ -17,7 +17,7 @@ group :production do
 end
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 #bootstrap
 gem 'bootstrap', '~> 4.4.1'
 gem 'simple_form'
